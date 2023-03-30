@@ -1,0 +1,30 @@
+//Hill Cipher
+#include<stdio.h>
+#include<math.h>
+
+int main() {
+int i, j,k;
+char msg[3];
+float encrypt[3][1]={0}, a[3][3], mes[3][1];
+ 
+printf("Enter 3x3 matrix for key (It should be inversible):\n");
+for(i = 0; i < 3; i++)
+for(j = 0; j < 3; j++) {
+scanf("%f", &a[i][j]);
+}
+printf("\nEnter a 3 letter string for plain text: ");
+scanf("%s", msg);
+
+for(i = 0; i < 3; i++)
+mes[i][0] = msg[i]-65;
+
+/*Matrix Multiplication of key and plain text*/
+for(i = 0; i < 3; i++)
+for(j = 0; j < 1; j++)
+for(k = 0; k < 3; k++)
+encrypt[i][j] = encrypt[i][j] + a[i][k] * mes[k][j];
+printf("\nEncrypted string is: ");
+for(i = 0; i < 3; i++)
+printf("%c", (char)(fmod(encrypt[i][0], 26) + 65));
+return 0;
+} 
